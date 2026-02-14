@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MCQ Practice Website</title>
+
+<style>
+body {
+    font-family: Arial;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+h2 {
+    text-align: center;
+}
+
+.question {
+    background: white;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.options button {
+    display: block;
+    margin: 5px 0;
+    padding: 8px;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.options button:hover {
+    background-color: #eaeaea;
+}
+
+.result {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.correct {
+    color: green;
+}
+
+.wrong {
+    color: red;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Biochemistry MCQ Practice Test</h2>
+
+<div id="quiz-container"></div>
+
+<script>
+
+const questions = [
+{
+q: "1. Proteins are formed primarily from ______ bonds.",
+options: ["peptide", "glycosidic", "phosphodiester", "disulfide"],
+correct: 0
+},
+{
+q: "2. A peptide bond is formed by:",
+options: ["Hydrolysis", "Loss of water molecule", "Gain of water molecule", "Oxidation"],
+correct: 1
+},
+{
+q: "3. How many peptide linkages does a hexapeptide have?",
+options: ["4", "5", "6", "7"],
+correct: 1
+},
+{
+q: "4. The building blocks of proteins are:",
+options: ["Fatty acids", "Monosaccharides", "Amino acids", "Nucleotides"],
+correct: 2
+},
+{
+q: "5. Which structure of protein is sequence of amino acids?",
+options: ["Primary", "Secondary", "Tertiary", "Quaternary"],
+correct: 0
+},
+{
+q: "6. Alpha-helix is an example of:",
+options: ["Primary structure", "Secondary structure", "Tertiary structure", "Denatured protein"],
+correct: 1
+},
+{
+q: "7. Disulfide bonds are formed between:",
+options: ["Glycine molecules", "Cysteine residues", "Alanine residues", "Peptide groups"],
+correct: 1
+},
+{
+q: "8. Enzymes are:",
+options: ["Lipids", "Carbohydrates", "Proteins", "Vitamins"],
+correct: 2
+},
+{
+q: "9. Denaturation affects which structure?",
+options: ["Primary only", "Secondary and tertiary", "Only peptide bonds", "Amino acid sequence"],
+correct: 1
+},
+{
+q: "10. Hemoglobin is an example of:",
+options: ["Fibrous protein", "Globular protein", "Enzyme", "Lipid"],
+correct: 1
+},
+{
+q: "11. Glycine is the simplest:",
+options: ["Protein", "Amino acid", "Carbohydrate", "Lipid"],
+correct: 1
+},
+{
+q: "12. The R-group determines:",
+options: ["Protein backbone", "Amino acid properties", "Peptide bond", "Water molecule"],
+correct: 1
+},
+{
+q: "13. Quaternary structure is present in:",
+options: ["Single polypeptide", "Multi-subunit proteins", "Dipeptides", "Amino acids"],
+correct: 1
+},
+{
+q: "14. Collagen is a:",
+options: ["Globular protein", "Fibrous protein", "Enzyme", "Hormone"],
+correct: 1
+},
+{
+q: "15. Which bond links amino acids?",
+options: ["Hydrogen bond", "Peptide bond", "Ionic bond", "Ester bond"],
+correct: 1
+},
+{
+q: "16. Carbohydrates are formed by:",
+options: ["Peptide bonds", "Glycosidic bonds", "Disulfide bonds", "Phosphodiester bonds"],
+correct: 1
+},
+{
+q: "17. DNA contains:",
+options: ["Amino acids", "Fatty acids", "Nucleotides", "Peptides"],
+correct: 2
+},
+{
+q: "18. Enzyme specificity is due to:",
+options: ["Primary structure", "Active site shape", "Temperature", "Water"],
+correct: 1
+},
+{
+q: "19. A dipeptide contains how many amino acids?",
+options: ["1", "2", "3", "4"],
+correct: 1
+},
+{
+q: "20. Proteins can be denatured by:",
+options: ["Cold water", "Heat and pH changes", "Oxygen only", "Nitrogen only"],
+correct: 1
+}
+];
+
+const container = document.getElementById("quiz-container");
+
+questions.forEach((item, index) => {
+
+let questionDiv = document.createElement("div");
+questionDiv.className = "question";
+
+let questionHTML = `<p><b>${item.q}</b></p><div class="options">`;
+
+item.options.forEach((opt, i) => {
+questionHTML += `<button onclick="checkAnswer(this, ${index}, ${i})">${String.fromCharCode(97+i)}) ${opt}</button>`;
+});
+
+questionHTML += `</div><div class="result"></div>`;
+questionDiv.innerHTML = questionHTML;
+
+container.appendChild(questionDiv);
+
+});
+
+function checkAnswer(button, questionIndex, selectedIndex) {
+
+let questionDiv = button.closest(".question");
+let resultDiv = questionDiv.querySelector(".result");
+
+if (selectedIndex === questions[questionIndex].correct) {
+resultDiv.innerHTML = "Correct ✅";
+resultDiv.className = "result correct";
+} else {
+resultDiv.innerHTML = "Wrong ❌";
+resultDiv.className = "result wrong";
+}
+
+}
+
+</script>
+
+</body>
+</html>
